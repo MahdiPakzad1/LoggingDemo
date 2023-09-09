@@ -1,0 +1,31 @@
+﻿@page "/"
+@using Microsoft.Extensions.Logging
+@inject ILogger<Index> log
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+
+@code {
+    //This won't work because constructor will be initialized before injecting ILogger therefore
+    // an Error on line  18 will pop up for "ArgumentNullException"
+
+    // public Index()
+    // {
+    //     log.LogInformation("Logging information from Index.razor");
+    // }
+
+    int id = 10;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        int id2 = 5;
+
+        log.LogInformation("Logging information from Index.razor id {userId} id {id} and id2 is {userId}",id, id, id2);
+    }
+
+}
